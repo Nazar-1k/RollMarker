@@ -18,6 +18,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	/** Set  Mark for Target on Hit */
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NarmalImpuls, const FHitResult& Hit);
+
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 

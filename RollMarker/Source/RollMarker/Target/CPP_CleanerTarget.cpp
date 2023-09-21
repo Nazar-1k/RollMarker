@@ -10,20 +10,26 @@ ACPP_CleanerTarget::ACPP_CleanerTarget()
 
 void ACPP_CleanerTarget::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NarmalImpuls, const FHitResult& Hit)
 {
-	
-	if (GetIsMark()) // If the this->Target is marked
-	{
-		// Set Mark for OtherTarget  
-		SetMarkOnHit(OtherActor);
-	}
-	else // If the this->Target isn't marked
-	{
-		ACPP_BaseTarget* OtherTarget = Cast<ACPP_BaseTarget>(OtherActor);
+	ACPP_BaseTarget* OtherTarget = Cast<ACPP_BaseTarget>(OtherActor);
 
-		if (OtherTarget)
+	if (OtherTarget)
+	{
+		if (!GetIsMark() && OtherTarget->GetIsMark()) // If the this->Target is marked
 		{
 			// Clear Mark for OtherTarget
 			OtherTarget->SetMark(false);
+			
+		}
+		else if(GetIsMark()) // If the this->Target isn't marked
+		{
+			ACPP_ClearTarget* OtherClearTarget = Cast<ACPP_ClearTarget>(OtherTarget);
+
+			//Cleaner can mark onle clear Target
+			if (OtherClearTarget && !OtherClearTarget->GetIsMark())
+			{
+				// Set Mark for OtherTarget 
+				OtherClearTarget->SetMark(true);
+			}
 		}
 	}
 }

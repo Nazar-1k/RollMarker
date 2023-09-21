@@ -3,6 +3,8 @@
 
 #include "CPP_RollPlayer.h"
 
+#include "../Target/CPP_BaseTarget.h"
+
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 
@@ -34,12 +36,25 @@ void ACPP_RollPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//Set Event On Hit for Sphere
+	SphereStaticMeshComponent->OnComponentHit.AddDynamic(this, &ACPP_RollPlayer::OnHit);
 }
 
 void ACPP_RollPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void ACPP_RollPlayer::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NarmalImpuls, const FHitResult& Hit)
+{
+	ACPP_BaseTarget* Target = Cast<ACPP_BaseTarget>(OtherActor);
+
+	if (Target && !Target->GetIsMark())
+	{	
+		//Set Target Mark
+		Target->SetMark(true);
+	}
 }
 
 void ACPP_RollPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

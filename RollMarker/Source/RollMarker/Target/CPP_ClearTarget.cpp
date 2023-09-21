@@ -2,6 +2,7 @@
 
 
 #include "CPP_ClearTarget.h"
+#include "CPP_CleanerTarget.h"
 
 ACPP_ClearTarget::ACPP_ClearTarget()
 {
@@ -10,7 +11,15 @@ ACPP_ClearTarget::ACPP_ClearTarget()
 void ACPP_ClearTarget::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NarmalImpuls, const FHitResult& Hit)
 {
 	//Set Mark
+	ACPP_CleanerTarget* OtherCleanerTarget =  Cast<ACPP_CleanerTarget>(OtherActor);
+	
+	if(OtherCleanerTarget)
+	{
+		return;
+	}
+
 	SetMarkOnHit(OtherActor);
+	
 }
 
 void ACPP_ClearTarget::SetMark(bool bMark)

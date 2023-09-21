@@ -35,11 +35,11 @@ void ACPP_BaseTarget::SetMarkOnHit(AActor* OtherActor)
 {
     if (GetIsMark())
     {
-        ACPP_BaseTarget* OtherClearTarget = Cast<ACPP_BaseTarget>(OtherActor);
+        ACPP_BaseTarget* OtherTarget = Cast<ACPP_BaseTarget>(OtherActor);
 
-        if (OtherClearTarget && OtherClearTarget != this && !OtherClearTarget->GetIsMark())
+        if (OtherTarget && OtherTarget != this && !OtherTarget->GetIsMark())
         {
-            OtherClearTarget->SetMark(true);
+        OtherTarget->SetMark(true);
         }
     }
 }
