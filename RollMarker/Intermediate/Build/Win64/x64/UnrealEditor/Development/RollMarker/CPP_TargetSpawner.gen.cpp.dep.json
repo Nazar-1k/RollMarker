@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\unrealeditor\\inc\\rollmarker\\uht\\cpp_targetspawner.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\x64\\rollmarkereditor\\development\\engine\\sharedpch.engine.shadowerrors.inclorderunreal5_1.h.pch",
+        "Includes": [
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rollmarker\\definitions.rollmarker.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\source\\rollmarker\\target\\spawner\\cpp_targetspawner.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\unrealeditor\\inc\\rollmarker\\uht\\cpp_targetspawner.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\source\\rollmarker\\player\\cpp_rollplayergamemodebase.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\x64\\rollmarkereditor\\development\\engine\\sharedpch.engine.shadowerrors.inclorderunreal5_1.h.pch",
+        "Includes": [
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rollmarker\\definitions.rollmarker.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\source\\rollmarker\\player\\cpp_rollplayergamemodebase.h",
+            "c:\\program files\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "c:\\program files\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "c:\\program files\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "c:\\program files\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\unrealeditor\\inc\\rollmarker\\uht\\cpp_rollplayergamemodebase.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
