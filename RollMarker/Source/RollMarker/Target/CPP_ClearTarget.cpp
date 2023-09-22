@@ -4,13 +4,16 @@
 #include "CPP_ClearTarget.h"
 #include "CPP_CleanerTarget.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "../Player/CPP_RollPlayerGameModeBase.h"
+
 ACPP_ClearTarget::ACPP_ClearTarget()
 {
 }
 
 void ACPP_ClearTarget::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NarmalImpuls, const FHitResult& Hit)
 {
-	//Set Mark
+	// Set Mark
 	ACPP_CleanerTarget* OtherCleanerTarget =  Cast<ACPP_CleanerTarget>(OtherActor);
 	
 	if(OtherCleanerTarget)
@@ -28,7 +31,7 @@ void ACPP_ClearTarget::SetMark(bool bMark)
 
 	if (!bMark)
 	{
-		//Set Material for Clear Target
+		// Set Material for Clear Target
 		SetMaterialByIndex(0);
 	}
 }
@@ -37,12 +40,24 @@ void ACPP_ClearTarget::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//Set Material for Clear Target
+	// Set Material for Clear Target
 	SetMaterialByIndex(0);
 
-	//Get Static Mesh for ClearTarget
-	UStaticMeshComponent* Square = GetSquare();
+	// Get Game Mode
+	ACPP_RollPlayerGameModeBase* GameMode = Cast<ACPP_RollPlayerGameModeBase>(UGameplayStatics::GetGameMode(this));
 
-	//Set Event On Hit
-	Square->OnComponentHit.AddDynamic(this, &ACPP_ClearTarget::OnHit);
+	// Timer Settings
+	FTimerHandle TimerHandle;
+	float TimerDelay = GameMode->GetStartDelay();
+
+	// Set Event On Hit after timer
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
+		{
+			// Get Static Mesh for Cleaner Target
+			UStaticMeshComponent* Square = GetSquare();
+
+			// Set Event On Hit
+			Square->OnComponentHit.AddDynamic(this, &ACPP_ClearTarget::OnHit);
+
+		}, TimerDelay, false);
 }

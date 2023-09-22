@@ -12,14 +12,16 @@
 #include "Engine/Engine.h"
 #include "Kismet/GameplayStatics.h"
 
+#include "CPP_RollPlayerGameModeBase.h"
+
 ACPP_RollPlayer::ACPP_RollPlayer()
 {
 
-	//Create Sphere
+	// Create Sphere
 	SphereStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sphere"));
 	SphereStaticMeshComponent->SetupAttachment(RootComponent);
 
-	//Create Arrow
+	// Create Arrow
 	ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
 	ArrowComponent->bHiddenInGame = false;
 
@@ -41,8 +43,21 @@ void ACPP_RollPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//Set Event On Hit for Sphere
-	SphereStaticMeshComponent->OnComponentHit.AddDynamic(this, &ACPP_RollPlayer::OnHit);
+	// Get Game Mode
+	ACPP_RollPlayerGameModeBase* GameMode = Cast<ACPP_RollPlayerGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+	// Timer Settings
+	FTimerHandle TimerHandle;
+	float TimerDelay = GameMode->GetStartDelay();
+
+	//Set Event On Hit after timer
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
+	{
+		// Set Event On Hit for Sphere
+		SphereStaticMeshComponent->OnComponentHit.AddDynamic(this, &ACPP_RollPlayer::OnHit);
+
+	}, TimerDelay, false);
+	
 }
 
 void ACPP_RollPlayer::Tick(float DeltaTime)
@@ -58,8 +73,12 @@ void ACPP_RollPlayer::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UP
 
 	if (Target && !Target->GetIsMark())
 	{	
-		//Set Target Mark
+		// Set Target Mark
 		Target->SetMark(true);
+
+		// Check for Win
+		ACPP_RollPlayerGameModeBase* GameMode = Cast<ACPP_RollPlayerGameModeBase>(UGameplayStatics::GetGameMode(this));
+		GameMode->IsWin();
 	}
 }
 
@@ -67,11 +86,11 @@ void ACPP_RollPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	//Keybord Control
+	// Keyboard Control
 	InputComponent->BindAxis("MoveRight", this, &ACPP_RollPlayer::MoveRight);
 	InputComponent->BindAxis("MoveForward", this, &ACPP_RollPlayer::MoveForward);
 
-	//Mouse Control
+	// Mouse Control
 	InputComponent->BindAxis("MouseX", this, &ACPP_RollPlayer::MouseX);
 	InputComponent->BindAxis("MouseY", this, &ACPP_RollPlayer::MouseY);
 }
@@ -101,12 +120,12 @@ void ACPP_RollPlayer::MoveRight(float AxisValue)
 
 void ACPP_RollPlayer::MouseX(float AxisValue)
 {
-	//X-axis camera control
+	// X-axis camera control
 	AddControllerYawInput(AxisValue);
 }
 void ACPP_RollPlayer::MouseY(float AxisValue)
 {
-	//Y-axis camera control
+	// Y-axis camera control
 	AddControllerPitchInput(-AxisValue);
 }
 

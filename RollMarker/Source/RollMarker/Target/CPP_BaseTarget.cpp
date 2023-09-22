@@ -3,15 +3,18 @@
 
 #include "CPP_BaseTarget.h"
 
+#include "../Player/CPP_RollPlayerGameModeBase.h"
+#include "Kismet/GameplayStatics.h"
+
 ACPP_BaseTarget::ACPP_BaseTarget()
 {
-    //Create Square
+    // Create Square
     SquareStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Square"));
     SquareStaticMeshComponent->SetupAttachment(RootComponent);
     SquareStaticMeshComponent->SetSimulatePhysics(true);
     SquareStaticMeshComponent->SetNotifyRigidBodyCollision(true);
 
-    //Add Material in Array
+    // Add Material in Array
     UMaterialInterface* Material1 = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Material/EnemyMaterials/M_ClearTarget.M_ClearTarget"));
     UMaterialInterface* Material2 = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Material/EnemyMaterials/M_Cleaner.M_Cleaner"));
     UMaterialInterface* Material3 = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Material/PlayerMaterial/M_Player.M_Player"));
@@ -39,7 +42,11 @@ void ACPP_BaseTarget::SetMarkOnHit(AActor* OtherActor)
 
         if (OtherTarget && OtherTarget != this && !OtherTarget->GetIsMark())
         {
-        OtherTarget->SetMark(true);
+            OtherTarget->SetMark(true);
+
+            // Check if Win
+            ACPP_RollPlayerGameModeBase* GameMode = Cast<ACPP_RollPlayerGameModeBase>(UGameplayStatics::GetGameMode(this));
+            GameMode->IsWin();
         }
     }
 }
@@ -48,7 +55,15 @@ void ACPP_BaseTarget::BeginPlay()
 {
     Super::BeginPlay();
 
-    RandomJump();
+    // Get Game Mode
+    ACPP_RollPlayerGameModeBase* GameMode = Cast<ACPP_RollPlayerGameModeBase>(UGameplayStatics::GetGameMode(this));
+    
+    // Timer Settings
+    FTimerHandle TimerHandle;
+    float TimerDelay = GameMode->GetStartDelay();
+
+    // Target Can Jump after Satart Delay
+    GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ACPP_BaseTarget::RandomJump, TimerDelay, false);
 }
 
 void ACPP_BaseTarget::RandomJump()
@@ -64,10 +79,10 @@ void ACPP_BaseTarget::RandomJump()
     // Apply the jump impulse with the specified force
     FVector Impulse = JumpDirection * JumpForce;
 
-    //Adds momentum to the SquareStaticMeshComponent the impulse is applied instantly
+    // Adds momentum to the SquareStaticMeshComponent the impulse is applied instantly
     SquareStaticMeshComponent->AddImpulse(Impulse, NAME_None, true);
 
-    //Reset Jump
+    // Reset Jump
     ResetJumpTimer();
 }
 
@@ -82,12 +97,12 @@ void ACPP_BaseTarget::ResetJumpTimer()
 
 void ACPP_BaseTarget::SetMaterialByIndex(int Index)
 {
-    //Get Material in Array
+    // Get Material in Array
     UMaterialInterface* Material = GetMaterialByIndex(Index);
 
     if (SquareStaticMeshComponent && Material != nullptr)
     {
-        //Set Material
+        // Set Material
         SquareStaticMeshComponent->SetMaterial(0, Material);
     }
 }
