@@ -1,0 +1,28 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\source\\rollmarker\\target\\spawner\\cpp_targetspawner.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\x64\\rollmarkereditor\\development\\engine\\sharedpch.engine.shadowerrors.inclorderunreal5_1.h.pch",
+        "Includes": [
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rollmarker\\definitions.rollmarker.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\source\\rollmarker\\target\\spawner\\cpp_targetspawner.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\unrealeditor\\inc\\rollmarker\\uht\\cpp_targetspawner.generated.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\source\\rollmarker\\target\\cpp_cleanertarget.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\source\\rollmarker\\target\\cpp_basetarget.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\unrealeditor\\inc\\rollmarker\\uht\\cpp_basetarget.generated.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\unrealeditor\\inc\\rollmarker\\uht\\cpp_cleanertarget.generated.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\source\\rollmarker\\target\\cpp_cleartarget.h",
+            "c:\\users\\xiaomi\\desktop\\alphanova\\0. test task\\rollmarker\\rollmarker\\intermediate\\build\\win64\\unrealeditor\\inc\\rollmarker\\uht\\cpp_cleartarget.generated.h",
+            "c:\\program files\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\components\\boxcomponent.h",
+            "c:\\program files\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "c:\\program files\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "c:\\program files\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\boxcomponent.generated.h",
+            "c:\\program files\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetmathlibrary.h",
+            "c:\\program files\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\kismetmathlibrary.generated.h",
+            "c:\\program files\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetmathlibrary.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
