@@ -65,7 +65,8 @@ private:
 	class UArrowComponent* ArrowComponent;
 
 	/** Camera boom */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player Components | Camera", meta = (AllowPrivateAccess = "true"))		class USpringArmComponent* CameraBoom;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player Components | Camera", meta = (AllowPrivateAccess = "true"))
+	class USpringArmComponent* CameraBoom;
 
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player Components | Camera", meta = (AllowPrivateAccess = "true"))
