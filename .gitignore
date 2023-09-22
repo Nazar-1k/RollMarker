@@ -50,7 +50,7 @@ Binaries/*
 Plugins/*/Binaries/*
 
 # Builds
-Build/
+
 Build/*
 
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
@@ -69,7 +69,7 @@ Saved/
 Saved/*
 
 # Compiled source files for the engine to use
-Intermediate/
+
 Intermediate/*
 Plugins/*/Intermediate/*
 
