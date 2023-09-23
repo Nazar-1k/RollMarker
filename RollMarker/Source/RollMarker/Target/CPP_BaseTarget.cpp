@@ -34,23 +34,6 @@ void ACPP_BaseTarget::SetMark(bool bMark)
     }
 }
 
-void ACPP_BaseTarget::SetMarkOnHit(AActor* OtherActor)
-{
-    if (GetIsMark())
-    {
-        ACPP_BaseTarget* OtherTarget = Cast<ACPP_BaseTarget>(OtherActor);
-
-        if (OtherTarget && OtherTarget != this && !OtherTarget->GetIsMark())
-        {
-            OtherTarget->SetMark(true);
-
-            // Check if Win
-            ACPP_RollPlayerGameModeBase* GameMode = Cast<ACPP_RollPlayerGameModeBase>(UGameplayStatics::GetGameMode(this));
-            GameMode->IsWin();
-        }
-    }
-}
-
 void ACPP_BaseTarget::BeginPlay()
 {
     Super::BeginPlay();
@@ -82,6 +65,25 @@ void ACPP_BaseTarget::RandomJump()
     // Adds momentum to the SquareStaticMeshComponent the impulse is applied instantly
     SquareStaticMeshComponent->AddImpulse(Impulse, NAME_None, true);
 
+    // Play Jump Sound
+   /* if (JumpSound)
+    {
+        UGameplayStatics::PlaySoundAtLocation(GetWorld(), JumpSound, GetActorLocation());
+    }*/
+
+    // Get Mesh dimensions
+    FVector Min, Max;
+    SquareStaticMeshComponent->GetLocalBounds(Min, Max);
+
+    // Get Height Mesh
+    float MeshHeight = Max.Z - Min.Z;
+
+    // Reproduce particles on the fllor
+    if (JumpParticles)
+    {
+        UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticles, GetActorLocation() - MeshHeight / 2, FRotator::ZeroRotator);
+    }
+  
     // Reset Jump
     ResetJumpTimer();
 }

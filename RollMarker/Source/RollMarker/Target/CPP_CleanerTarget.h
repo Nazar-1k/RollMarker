@@ -33,4 +33,12 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+private:
+	/** Sound to be played when the object performs a Clear action */
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundBase* ClearSound;
+
+	UFUNCTION(BlueprintCallable)
+	void SetClearSound(USoundBase* NewClearSound) { ClearSound = NewClearSound; }
+	
 };

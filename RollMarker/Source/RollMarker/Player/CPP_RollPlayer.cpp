@@ -76,6 +76,18 @@ void ACPP_RollPlayer::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UP
 		// Set Target Mark
 		Target->SetMark(true);
 
+		// Reproduce particles at the point of collision
+		if (Target->GetHitParticle())
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), Target->GetHitParticle(), Hit.Location, FRotator::ZeroRotator);
+		}
+
+		// Play Hit Sound
+		if (Target->GetHitSound())
+		{
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), Target->GetHitSound(), GetActorLocation());
+		}
+
 		// Check for Win
 		ACPP_RollPlayerGameModeBase* GameMode = Cast<ACPP_RollPlayerGameModeBase>(UGameplayStatics::GetGameMode(this));
 		GameMode->IsWin();

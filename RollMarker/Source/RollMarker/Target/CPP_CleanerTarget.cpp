@@ -21,7 +21,12 @@ void ACPP_CleanerTarget::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 		{
 			// Clear Mark for OtherTarget
 			OtherTarget->SetMark(false);
-			
+
+			// Play Clear Sound
+			if (ClearSound)
+			{
+				UGameplayStatics::PlaySoundAtLocation(GetWorld(), ClearSound, GetActorLocation());
+			}
 		}
 		else if(GetIsMark()) // If the this->Target isn't marked
 		{
@@ -39,6 +44,17 @@ void ACPP_CleanerTarget::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 		ACPP_RollPlayerGameModeBase* GameMode = Cast<ACPP_RollPlayerGameModeBase>(UGameplayStatics::GetGameMode(this));
 		GameMode->IsWin();
 
+		// Play Hit Sound
+		/*if (HitSound)
+		{
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitSound, GetActorLocation());
+		}*/
+
+		// Reproduce particles at the point of collision
+		if (HitParticles)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticles, Hit.Location, FRotator::ZeroRotator);
+		}
 	}
 }
 

@@ -26,8 +26,11 @@ public:
 	/** Determines whether the target is marked and sets the material to it if the target is marked */
 	virtual void SetMark(bool bMark);
 
-	/** Sets the target as spotted if the Actor itself is spotted */
-	void SetMarkOnHit(AActor* OtherActor);
+	/** Get Hit Particle */
+	class UParticleSystem* GetHitParticle() { return HitParticles; }
+
+	/** Get HitSound */
+	USoundBase* GetHitSound() { return HitSound; }
 
 protected:
 	// Called when the game starts or when spawned
@@ -41,6 +44,30 @@ protected:
 
 	/** Set Material By Index */
 	void SetMaterialByIndex(int Index);
+
+	/** Particle system to be played when the object is hit */
+	UPROPERTY(EditAnywhere, Category = "Particle")
+	class UParticleSystem* HitParticles;
+
+	/** Particle system to be played when the object performs a jump action */
+	UPROPERTY(EditAnywhere, Category = "Particle")
+	class UParticleSystem* JumpParticles;
+
+	/** Sound to be played when the object is hit */
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundBase* HitSound;
+
+	/** Sound to be played when the object performs a jump action */
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundBase* JumpSound;
+
+	/** Set Hit Sound */
+	UFUNCTION(BlueprintCallable)
+	void SetHitSound(USoundBase* NewHitSoud) { HitSound = NewHitSoud; }
+
+	/** Set Jump Sound */
+	UFUNCTION(BlueprintCallable)
+	void SetJumpSound(USoundBase* NewJumpSound) { JumpSound = NewJumpSound; }
 
 private:
 
