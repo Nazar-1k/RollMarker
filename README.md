@@ -42,6 +42,8 @@ Spotted Targets Counter: This counter shows the number of targets that the playe
 Cleaner Counter: This counter displays the number of "cleaners" or targets that can return spotted targets to their original state.  
 ![HUD](https://github.com/Nazar-1k/RollMarker/assets/82716260/68e0d2cc-bd65-46f9-be83-505f579a611e)
 
+The game has a win/lose screen
+![WinLose](https://github.com/Nazar-1k/RollMarker/assets/82716260/9f8b71cf-50b6-492f-b535-5ef069d09662)
 
 # Sound and Effects
 Stressful music is added to the game, which adds tension and makes the game more interesting  
